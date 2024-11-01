@@ -23,5 +23,5 @@ jobs:
 
       - name: Run Notebook Tests
         run: |
-          jupyter nbconvert --to notebook --execute user1_example_program.ipynb --output user1_output.ipynb
-          jupyter nbconvert --to notebook --execute user2_example_program.ipynb --output user2_output.ipynb
+          jupyter nbconvert --to notebook --execute userA_example_program.ipynb --output userA_output.ipynb
+          jupyter nbconvert --to notebook --execute userB_example_program.ipynb --output userB_output.ipynb
