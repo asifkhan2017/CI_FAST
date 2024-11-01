@@ -24,12 +24,15 @@ jobs:
 
     - name: Run User A's notebook
       run: |
-        jupyter nbconvert --to notebook --execute userA_example_program.ipynb --inplace || exit 1
+        jupyter nbconvert --to notebook --execute userA_example_program.ipynb --inplace
+        if [ $? -ne 0 ]; then echo "User A's notebook execution failed"; exit 1; fi
 
     - name: Run User B's notebook
       run: |
-        jupyter nbconvert --to notebook --execute userB_example_program.ipynb --inplace || exit 1
+        jupyter nbconvert --to notebook --execute userB_example_program.ipynb --inplace
+        if [ $? -ne 0 ]; then echo "User B's notebook execution failed"; exit 1; fi
 
     - name: Run Tests
       run: |
-        jupyter nbconvert --to notebook --execute test_example.ipynb --inplace || exit 1
+        jupyter nbconvert --to notebook --execute test_example.ipynb --inplace
+        if [ $? -ne 0 ]; then echo "Test execution failed"; exit 1; fi
