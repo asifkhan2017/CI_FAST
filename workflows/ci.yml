@@ -1,0 +1,27 @@
+name: CI for Jupyter Notebooks
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test_notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install nbconvert and pytest
+        run: |
+          pip install nbconvert pytest
+
+      - name: Run Notebook Tests
+        run: |
+          jupyter nbconvert --to notebook --execute userA_example_program.ipynb --output userA_output.ipynb
+          jupyter nbconvert --to notebook --execute userB_example_program.ipynb --output userB_output.ipynb
