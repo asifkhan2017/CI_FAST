@@ -1,26 +1,35 @@
-steps:
-- name: Checkout code
-  uses: actions/checkout@v2
+name: CI
 
-- name: Set up Python
-  uses: actions/setup-python@v2
-  with:
-    python-version: '3.10'
+on:
+  push:
+    branches: [ main ]
 
-- name: Install dependencies
-  run: |
-    python -m pip install --upgrade pip
-    pip install jupyter
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-- name: Run User A's notebook
-  run: |
-    jupyter nbconvert --to notebook --execute userA_example_program.ipynb --inplace || exit 1
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-- name: Run User B's notebook
-  run: |
-    jupyter nbconvert --to notebook --execute userB_example_program.ipynb --inplace || exit 1
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
 
-- name: Run Tests
-  run: |
-    jupyter nbconvert --to notebook --execute test_example.ipynb --inplace || exit 1
-   ''')
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install jupyter
+
+    - name: Run User A's notebook
+      run: |
+        jupyter nbconvert --to notebook --execute userA_example_program.ipynb --inplace || exit 1
+
+    - name: Run User B's notebook
+      run: |
+        jupyter nbconvert --to notebook --execute userB_example_program.ipynb --inplace || exit 1
+
+    - name: Run Tests
+      run: |
+        jupyter nbconvert --to notebook --execute test_example.ipynb --inplace || exit 1
