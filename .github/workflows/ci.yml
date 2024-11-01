@@ -23,7 +23,9 @@ jobs:
         pip install jupyter
 
     - name: Run User A's notebook
-      run: jupyter nbconvert --to notebook --execute userA_example_program.ipynb --inplace
+      run: |
+        jupyter nbconvert --to notebook --execute userA_example_program.ipynb --inplace || exit 1
 
     - name: Run User B's notebook
-      run: jupyter nbconvert --to notebook --execute userB_example_program.ipynb --inplace
+      run: |
+        jupyter nbconvert --to notebook --execute userB_example_program.ipynb --inplace || exit 1
