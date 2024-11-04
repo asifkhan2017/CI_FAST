@@ -1,7 +1,7 @@
 # userB_example_program.py
 
 def format_string(name):
-    return f"Hello, {name}!"  #correct
+    return f"Hi there, {name}"  # Intentional error: missing exclamation mark
 
 if __name__ == "__main__":
     user_name = "Bob"
